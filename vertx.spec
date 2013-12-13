@@ -1,8 +1,8 @@
 %define _base vert.x 
-%define _hash aeb7b36a15e67f3d15afaadb48bcf3b9819906c9
+%define _hash eedfe222212287749b01a3dd53cb8224d896ee1a
 
 Name: %{_base} 
-Version: 2.1M1 
+Version: 2.1M2 
 Release: 1%{?dist} 
 Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model. 
 Packager: Fernando Jordan Silva <fjordan@aubay.es> 
@@ -36,12 +36,12 @@ cp -Rp $RPM_SOURCE_DIR/%{_base}-%{version}/* $RPM_BUILD_ROOT%{_prefix}/%{_base}
 
 %post
 cd /usr/bin
-ln -s %{_prefix}/%{_base}/bin/vertx /usr/bin/vertx
+ln -s %{_prefix}/%{_base}/bin/vertx %{_bindir}/vertx
 echo "[INFO] Done"
 
 %preun
 if [ $1 == 0 ]; then
-   rm -Rf /usr/bin/vertx
+   rm -Rf %{_bindir}/vertx
    echo "[INFO] Done"
 fi
 
@@ -54,5 +54,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
 %{_prefix}/%{_base} 
 
 %changelog 
+* Wed Dec 11 2013 Fernando Jordan <fjordansilva@gmail.com>
+- Updated to Vert.x version 2.1M2
 * Fri Nov 29 2013 Fernando Jordan <fjordansilva@gmail.com> 
 - Initial version
