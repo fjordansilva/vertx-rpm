@@ -1,4 +1,32 @@
-vertx-rpm
-=========
-
 Vert.x rpm spec
+===============
+# How to install
+
+### Distro support
+
+Tested working on:
+
+* RHEL 6 x86_64
+
+#### RHEL/CentOS/SL/OL 6
+
+    $ sudo yum install -y rpm-build rpmdevtools
+    $ rpmdev-setuptree
+    $ cp <git repo dir>/vertx.spec ~/rpmbuild/SPECS/
+    $ spectool -g -R ~/rpmbuild/SPECS/vertx.spec
+    $ rpmbuild --clean -ba ~/rpmbuild/SPECS/vertx.spec
+    $ sudo yum install ~/rpmbuild/RPMS/x86_64/vertx-X.X.X-X.el6.x86_64.rpm --nogpgcheck
+
+#### RHEL/CentOS/SL/OL 5
+
+when you try to build on el5, must enable the EPEL repository.
+
+    $ sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+    $ sudo yum install -y rpm-build rpmdevtools
+    $ mkdir ~/rpmbuild
+    $ cd ~/rpmbuild
+    $ rpmdev-setuptree
+    $ cp <git repo dir>/vertx.spec ~/rpmbuild/SPECS/
+    $ spectool -g -R ~/rpmbuild/SPECS/vertx.spec
+    $ rpmbuild --clean -ba ~/rpmbuild/SPECS/vertx.spec
+    $ sudo yum install ~/rpmbuild/RPMS/x86_64/vertx-X.X.X-X.x86_64.rpm --nogpgcheck
