@@ -14,8 +14,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-tmp
 BuildRequires: tar 
 BuildRequires: gzip
 
+%define _prefix /opt
+
 %description 
 Vert.x is a lightweight, high performance application platform for the JVM that's designed for modern mobile, web, and enterprise applications. 
+
+%pre
+getent group vertx >/dev/null || groupadd -r vertx
+getent passwd vertx >/dev/null || useradd -r -g vertx -s /sbin/nologin -c "Vert.x service account" vertx
+exit 0
 
 %prep 
 rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
@@ -35,13 +42,13 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/%{_base}
 cp -Rp $RPM_SOURCE_DIR/%{_base}-%{version}/* $RPM_BUILD_ROOT%{_prefix}/%{_base}
 
 %post
-cd /usr/bin
-ln -s %{_prefix}/%{_base}/bin/vertx %{_bindir}/vertx
+[ -d /usr/bin ] || mkdir -p /usr/bin
+ln -s %{_prefix}/%{_base}/bin/vertx /usr/bin/vertx
 echo "[INFO] Done"
 
 %preun
 if [ $1 == 0 ]; then
-   rm -Rf %{_bindir}/vertx
+   rm -Rf /usr/bin/vertx
    echo "[INFO] Done"
 fi
 
@@ -50,10 +57,12 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_SOURCE_DIR/%{_base}-%{version} 
 
 %files 
-%defattr(755,root,root,-) 
+%defattr(755,vertx,vertx,-) 
 %{_prefix}/%{_base} 
 
 %changelog 
+* Thu Jan 09 2014 Fernando Jordan <fjordansilva@gmail.com>
+- Added vertx user and group to the system.
 * Wed Dec 11 2013 Fernando Jordan <fjordansilva@gmail.com>
 - Updated to Vert.x version 2.1M2
 * Fri Nov 29 2013 Fernando Jordan <fjordansilva@gmail.com> 
