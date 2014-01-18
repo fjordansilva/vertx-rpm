@@ -1,8 +1,8 @@
 %define _base vert.x 
-%define _hash eedfe222212287749b01a3dd53cb8224d896ee1a
+%define _hash f880cb78b116f27c303021d2eaa8e6fd00c2850b
 
 Name: %{_base} 
-Version: 2.1M2 
+Version: 2.1M3 
 Release: 1%{?dist} 
 Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model. 
 Packager: Fernando Jordan Silva <fjordan@aubay.es> 
