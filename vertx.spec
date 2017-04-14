@@ -44,8 +44,8 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/%{_base}
 cp -Rp $RPM_SOURCE_DIR/%{_base}-%{version}/* $RPM_BUILD_ROOT%{_prefix}/%{_base}
 
 %post
-[ -d /usr/bin ] || mkdir -p /usr/bin
-ln -s %{_prefix}/%{_base}/bin/vertx /usr/bin/vertx
+[ -d /usr/local/bin ] || mkdir -p /usr/local/bin
+ln -s %{_prefix}/%{_base}/bin/vertx /usr/local/bin/vertx
 echo "[INFO] Done"
 
 %preun

@@ -12,7 +12,7 @@ Tested working on:
 ### 2.1. Scripted installation
 
     $ cd <git repo dir>
-    $ ./build.sh
+    $ ./build.sh  # Note: this can take 5+ minutes due to brp-java-repack-jars
     $ sudo yum install ~/rpmbuild/RPMS/x86_64/vertx-X.X.X-X.el6.x86_64.rpm --nogpgcheck
 
 ### 2.2. Manual installation
