@@ -28,7 +28,6 @@ exit 0
 
 %prep 
 rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
-rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}.tar.gz
 pushd $RPM_SOURCE_DIR 
 [ -f %{_hash}?filename=%{_base}-%{version}.tar.gz ] && mv %{_hash}?filename=%{_base}-%{version}.tar.gz %{_base}-%{version}.tar.gz
 popd 
@@ -36,6 +35,7 @@ popd
 %build 
 pushd $RPM_SOURCE_DIR 
 tar zxvf %{_base}-%{version}.tar.gz 
+ln -s vertx/ %{_base}-%{version}
 popd 
 
 %install 
@@ -64,7 +64,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
 
 %changelog 
 * Fri Apr 14 2017 Mark Hudson <markhu@gmail.com>
-- dynamic _tmppath to allow building by non-root user
+- handle changed directory structure in newer tarballs
 * Thu Jan 09 2014 Fernando Jordan <fjordansilva@gmail.com>
 - Added vertx user and group to the system.
 * Wed Dec 11 2013 Fernando Jordan <fjordansilva@gmail.com>

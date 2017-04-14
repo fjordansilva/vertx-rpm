@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-# Note: must manually update Version in RPM_SPECFILE: vertx.spec
+# Note: Manually update Version in the vertx.spec RPM spec file.
+#       The RPM build process downloads that version from Source.
 
-# RPMBUILD_DIR=`rpm --eval %{_topdir}`
-RPMBUILD_DIR=tmp_$(date +%s)
+RPMBUILD_DIR=`rpm --eval %{_topdir}`
 mkdir -p $RPMBUILD_DIR/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 
 echo  $RPMBUILD_DIR
@@ -18,7 +18,5 @@ cp $VERTX_RPM_DIR/*.spec .
 cd -
 
 spectool -g -R $RPMBUILD_DIR/SPECS/vertx.spec
-echo "=================================================================="
-echo "rpmbuild \
-         --BUILDROOT=$VERTX_RPM_DIR/$RPMBUILD_DIR --clean -ba $RPMBUILD_DIR/SPECS/vertx.spec"
-rpmbuild --BUILDROOT=$VERTX_RPM_DIR/$RPMBUILD_DIR --clean -ba $RPMBUILD_DIR/SPECS/vertx.spec
+echo "rpmbuild --clean -ba $RPMBUILD_DIR/SPECS/vertx.spec"
+rpmbuild       --clean -ba $RPMBUILD_DIR/SPECS/vertx.spec
