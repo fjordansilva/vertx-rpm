@@ -1,14 +1,16 @@
 %define _base vert.x 
 %define _hash f880cb78b116f27c303021d2eaa8e6fd00c2850b
 
+# human-readable/info tags
 Name: %{_base} 
-Version: 2.1M3 
+Version: 3.4.0 
 Release: 1%{?dist} 
 Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model. 
 Packager: Fernando Jordan Silva <fjordan@aubay.es> 
 Group: Development/Libraries 
 License: MIT License 
-URL: http://vertx.io 
+URL: http://vertx.io/
+# functional tags
 Source0: http://dl.bintray.com/vertx/downloads/%{_base}-%{version}.tar.gz 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-tmp 
 BuildRequires: tar 
@@ -61,6 +63,8 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
 %{_prefix}/%{_base} 
 
 %changelog 
+* Fri Apr 14 2017 Mark Hudson <markhu@gmail.com>
+- dynamic _tmppath to allow building by non-root user
 * Thu Jan 09 2014 Fernando Jordan <fjordansilva@gmail.com>
 - Added vertx user and group to the system.
 * Wed Dec 11 2013 Fernando Jordan <fjordansilva@gmail.com>
