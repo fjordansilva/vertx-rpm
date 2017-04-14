@@ -1,22 +1,23 @@
 Vert.x rpm spec
 ===============
-##1. Distro support
+## 1. Distro support
 
 Tested working on:
 
 * RHEL 6 x86_64
+* CentOS 6.7
 
-##2. How to install
+## 2. How to install
 
-###2.1. Scripted installation
+### 2.1. Scripted installation
 
     $ cd <git repo dir>
-    $ ./build.sh
+    $ ./build.sh  # Note: this can take 5+ minutes due to brp-java-repack-jars
     $ sudo yum install ~/rpmbuild/RPMS/x86_64/vertx-X.X.X-X.el6.x86_64.rpm --nogpgcheck
 
-###2.2. Manual installation
+### 2.2. Manual installation
 
-####2.2.1. RHEL/CentOS/SL/OL 6
+#### 2.2.1. RHEL/CentOS/SL/OL 6
 
     $ sudo yum install -y rpm-build rpmdevtools
     $ rpmdev-setuptree
@@ -25,7 +26,7 @@ Tested working on:
     $ rpmbuild --clean -ba ~/rpmbuild/SPECS/vertx.spec
     $ sudo yum install ~/rpmbuild/RPMS/x86_64/vertx-X.X.X-X.el6.x86_64.rpm --nogpgcheck
 
-####2.2.2. RHEL/CentOS/SL/OL 5
+#### 2.2.2. RHEL/CentOS/SL/OL 5
 
 when you try to build on el5, must enable the EPEL repository.
 
