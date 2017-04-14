@@ -2,31 +2,31 @@
 %define _hash f880cb78b116f27c303021d2eaa8e6fd00c2850b
 
 # human-readable/info tags
-Name: %{_base} 
-Version: 3.4.0 
-Release: 1%{?dist} 
-Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model. 
-Packager: Fernando Jordan Silva <fjordan@aubay.es> 
-Group: Development/Libraries 
-License: MIT License 
+Name: %{_base}
+Version: 3.4.1
+Release: 1%{?dist}
+Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model.
+Packager: Fernando Jordan Silva <fjordan@aubay.es>
+Group: Development/Libraries
+License: MIT License
 URL: http://vertx.io/
 # functional tags
-Source0: http://dl.bintray.com/vertx/downloads/%{_base}-%{version}.tar.gz 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-tmp 
-BuildRequires: tar 
+Source0: http://dl.bintray.com/vertx/downloads/%{_base}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-tmp
+BuildRequires: tar
 BuildRequires: gzip
 
 %define _prefix /opt
 
-%description 
-Vert.x is a lightweight, high performance application platform for the JVM that's designed for modern mobile, web, and enterprise applications. 
+%description
+Vert.x is a lightweight, high performance application platform for the JVM that's designed for modern mobile, web, and enterprise applications.
 
 %pre
 getent group vertx >/dev/null || groupadd -r vertx
 getent passwd vertx >/dev/null || useradd -r -g vertx -s /sbin/nologin -c "Vert.x service account" vertx
 exit 0
 
-%prep 
+%prep
 rm -rf $RPM_SOURCE_DIR/%{_base}-%{version}
 pushd $RPM_SOURCE_DIR 
 [ -f %{_hash}?filename=%{_base}-%{version}.tar.gz ] && mv %{_hash}?filename=%{_base}-%{version}.tar.gz %{_base}-%{version}.tar.gz
