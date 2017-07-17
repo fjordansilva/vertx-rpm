@@ -3,7 +3,7 @@
 
 # human-readable/info tags
 Name: %{_base}
-Version: 3.4.1
+Version: 3.4.2
 Release: 1%{?dist}
 Summary: Vert.x is a server-side Java environment that uses an asynchronous event-driven model.
 Packager: Fernando Jordan Silva <fjordan@aubay.es>
